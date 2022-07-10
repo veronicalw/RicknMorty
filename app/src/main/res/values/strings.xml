@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Rick and Morty</string>
+
+    <!--    introduction headlines-->
+    <string name="firstIntroHeading">Rick and Morty</string>
+    <string name="firstIntroSubHeading">Welcome to Rick and Morty wikipedia by Cartoon Network</string>
+    <string name="secondIntroHeading">Your Favourite Character</string>
+    <string name="secondIntroSubHeading">Get to know more your favourite character</string>
+    <string name="thirdIntroHeading">Explore Now!</string>
+
+    <!--    recycler item placeholder-->
+    <string name="itemNamePlaceHolder">Rick and Morty</string>
+    <string name="itemSpeciesPlaceHolder">Human</string>
+    <string name="itemStatusPlaceHolder">Alive</string>
+
+    <!--    character detail item titles-->
+    <string name="detailItemSpeciesTitle">Species</string>
+    <string name="detailItemOriginTitle">Origin</string>
+    <string name="detailItemTypeTitle">Type</string>
+    <string name="detailItemLocationTitle">Location</string>
+    <string name="detailItemEpisodesTitle">Episode(s)</string>
+
+    <!--    character detail item value placeholder-->
+    <string name="detailItemGenderPlaceholder">Male</string>
+    <string name="detailItemLocationPlaceholder">United States of America</string>
+    <string name="detailItemOriginPlaceholder">Earth</string>
+    <string name="detailItemNumberEpisodePlaceholder">Number of Episode $1</string>
+
+    <!--    character detail episode item titles-->
+    <string name="episodeItemPlaceHolder">Episode $1</string>
+    <string name="episodeItemTitlePlaceHolder">Pilot</string>
+    <string name="episodeItemAiredPlaceHolder">Aired: $1</string>
+
+    <!--    message-->
+    <string name="messageNetworkError">Please check your internet connection! Thank You</string>
+
+    <!--    developer info-->
+    <string name="developerFooterInfo">Developed and Built by Leony V.W</string>
+
+    <string-array name="mainImageItems">
+        <item>https://wallpaperaccess.com/full/1274691.jpg</item>
+        <item>https://images2.alphacoders.com/110/1103754.jpg</item>
+        <item>https://cdn.shopify.com/s/files/1/0936/1592/products/thumb-1920-909641.png?v=1638825616</item>
+    </string-array>
+</resources>
