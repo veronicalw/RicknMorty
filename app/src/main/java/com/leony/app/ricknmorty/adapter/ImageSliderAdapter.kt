@@ -37,6 +37,6 @@ class ImageSliderAdapter() :
     }
 
     class SliderImageViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val mImageView by lazy { view.findViewById(R.id.imgProductDetail) as ImageView }
+        val mImageView by lazy { view.findViewById(R.id.imgCharacterDetail) as ImageView }
     }
 }

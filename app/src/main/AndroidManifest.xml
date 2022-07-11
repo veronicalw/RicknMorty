@@ -11,7 +11,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_apps_logo_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RicknMorty">
+        android:theme="@style/AppBaseTheme">
+        <activity
+            android:name=".view.IntroductionActivity"
+            android:exported="false" />
         <activity
             android:name=".view.MainActivity"
             android:exported="false" />
@@ -23,7 +26,8 @@
             android:name=".view.SplashActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:screenOrientation="nosensor">
+            android:screenOrientation="nosensor"
+            android:theme="@style/Theme.App.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
