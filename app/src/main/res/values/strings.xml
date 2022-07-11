@@ -22,8 +22,8 @@
 
     <!--    character detail item value placeholder-->
     <string name="detailItemGenderPlaceholder">Male</string>
-    <string name="detailItemLocationPlaceholder">United States of America</string>
-    <string name="detailItemOriginPlaceholder">Earth</string>
+    <string name="detailItemLocationPlaceholder">Earth</string>
+    <string name="detailItemOriginPlaceholder">Earth replacement dimension</string>
     <string name="detailItemNumberEpisodePlaceholder">Number of Episode $1</string>
 
     <!--    character detail episode item titles-->

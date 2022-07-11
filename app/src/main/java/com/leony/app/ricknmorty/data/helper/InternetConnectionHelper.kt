@@ -6,6 +6,7 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import java.net.InetAddress
 import io.reactivex.functions.Function
+import javax.net.ssl.SSLException
 
 class InternetConnectionHelper(val context: Context) {
     companion object {
@@ -21,9 +22,16 @@ class InternetConnectionHelper(val context: Context) {
 
     private fun checkInternetConnection(context: Context, host: String): Observable<Boolean> {
         return Observable
-            .create { emitter ->
+            .create<Boolean?> { emitter ->
                 emitter.onNext(isActiveNetworkConnected(context))
                 emitter.onComplete()
+            }
+            .onErrorReturn {
+                if (it is SSLException){
+                    throw it
+                } else {
+                    false
+                }
             }
             .map(Function<Boolean, Boolean> { hasNetwork ->
                 if (hasNetwork) {

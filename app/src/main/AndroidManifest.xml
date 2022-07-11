@@ -7,17 +7,20 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_apps_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_apps_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RicknMorty">
+        <activity
+            android:name=".view.MainActivity"
+            android:exported="false" />
         <activity
             android:name=".view.DetailActivity"
             android:exported="false"
             android:screenOrientation="nosensor" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.SplashActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="nosensor">

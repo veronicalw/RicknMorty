@@ -30,7 +30,7 @@ class GetCharacterListWorker(
             }
     }
 
-    private fun handleRequestCharacterList(){
+    fun handleRequestCharacterList(){
         defaultStateDisposable = Observable.just(true)
             .flatMap { repository.getCharacterList() }
             .subscribeOn(processScheduler)

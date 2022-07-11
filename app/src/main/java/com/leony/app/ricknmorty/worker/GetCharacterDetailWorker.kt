@@ -31,7 +31,7 @@ class GetCharacterDetailWorker (
             }
     }
 
-    private fun handleRequestCharacterList(id: Int){
+    fun handleRequestCharacterList(id: Int){
         defaultStateDisposable = Observable.just(true)
             .flatMap { repository.getCharacterDetail(id) }
             .subscribeOn(processScheduler)
