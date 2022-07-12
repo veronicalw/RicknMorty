@@ -21,15 +21,26 @@ class IntroductionActivity : AppCompatActivity() {
     private lateinit var layouts: IntArray
     lateinit var indicators: Array<TextView?>
 
+    /**
+     * This class is displaying an Introduction slides for those who are the first time launch
+     * this app
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_introduction)
+
         isFirstTimeLaunched(this)
         initResources()
         selectedIndicator(0)
         setViewPagerListener()
     }
 
+    /**
+     * This method to check whether it is the first time launch or not.
+     * If it is the first time (state: false), then it will store the state in boolean to shared preference
+     * inside Introduction Manager class or otherwise (state: true), it will directly bring the user
+     * to the MainActivity
+     */
     private fun isFirstTimeLaunched(context: Context){
         val introductionManager = IntroductionManager(context)
         if (introductionManager.checkIsFirstTime()){
@@ -48,11 +59,20 @@ class IntroductionActivity : AppCompatActivity() {
         layouts = intArrayOf(R.layout.introduction_1, R.layout.introduction_2, R.layout.introduction_3)
     }
 
+    /**
+     * This method is responsible for handling list of layouts that I put on the IntroductionActivity.
+     * (Three layouts at first launch)
+     */
     private fun setViewPagerListener(){
         val introductionSliderAdapter = IntroductionSliderAdapter()
         introductionSliderAdapter.update(layouts, this)
         viewPager!!.adapter = introductionSliderAdapter
         viewPager!!.addOnPageChangeListener(viewListener)
+
+        /**
+         * This button is responsible to switch from one slide to another and after it reached
+         * the final layout, it will open the MainActivity
+         */
         btnNextSlide!!.setOnClickListener {
             val currentItem = getItemIndicators(+1)
             if (currentItem < layouts.size){
@@ -65,6 +85,9 @@ class IntroductionActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * This function is responsible to set the UI of the indicators to set it on the view
+     */
     private fun selectedIndicatorView(){
         pointsLayout?.removeAllViews()
         for (i in indicators.indices) {
@@ -75,6 +98,10 @@ class IntroductionActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * This function is responsible to determine the selected position indicators or well-known as dots
+     * on the ImageView Slider
+     */
     private fun selectedIndicator(position: Int) {
         indicators = arrayOfNulls(layouts.size)
         selectedIndicatorView()
@@ -87,10 +114,16 @@ class IntroductionActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Indicator for the btnNext
+     */
     private fun getItemIndicators(item: Int): Int {
         return viewPager!!.currentItem + item
     }
 
+    /**
+     * A Listener for the indicator/dots
+     */
     var viewListener: ViewPager.OnPageChangeListener = object : ViewPager.OnPageChangeListener {
         override fun onPageScrolled(
             position: Int,

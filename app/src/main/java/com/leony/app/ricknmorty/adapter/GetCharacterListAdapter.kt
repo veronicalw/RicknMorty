@@ -24,14 +24,24 @@ class GetCharacterListAdapter(
         return GetCharacterListViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_item_character_list, parent, false), itemClickListener)
     }
 
+    /**
+     * Binding item data to the ViewHolder using its position
+     */
     override fun onBindViewHolder(holder: GetCharacterListViewHolder, position: Int) {
         holder.onBind(charList[position])
     }
 
+    /**
+     * Size of the Character's list
+     */
     override fun getItemCount(): Int {
         return charList.size
     }
 
+    /**
+     * This public method called by the override class (GetCharacterDetailView - displayCharacterDetailResult())
+     * to pass data to the adapter.
+     */
     fun updateListCharacter(response: GetCharacterListResponse) {
         if (response.results.isNotEmpty()){
             this.charList = response.results
@@ -39,6 +49,9 @@ class GetCharacterListAdapter(
         }
     }
 
+    /**
+     * Custom View Holder
+     */
     class GetCharacterListViewHolder(val view: View, val itemClickListener: GetCharacterListItemClickListener) : RecyclerView.ViewHolder(view){
         private val charName by lazy { view.findViewById(R.id.itemName) as TextView}
         private val charSpecies by lazy { view.findViewById(R.id.itemSpecies) as TextView}

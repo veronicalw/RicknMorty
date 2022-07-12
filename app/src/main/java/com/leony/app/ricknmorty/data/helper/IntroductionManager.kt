@@ -3,6 +3,10 @@ package com.leony.app.ricknmorty.data.helper
 import android.content.Context
 import android.content.SharedPreferences
 
+/**
+ * This class is responsible for storing state of the first launch to the shared preferences.
+ * Needed by the IntroductionActivity
+ */
 class IntroductionManager(context: Context) {
     companion object{
         const val INTRO_PREFERENCE_KEY = "intro_preference_key"

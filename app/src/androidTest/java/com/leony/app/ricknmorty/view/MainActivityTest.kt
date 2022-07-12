@@ -48,6 +48,10 @@ class MainActivityTest {
      */
     @Test
     fun testSelectCharacterItemFromListAndNavigateToDetailActivity(){
+        /**
+         * Giving delay if the intended character is not displayed on the UI (E.g: in position 8).
+         * But in this case I would use the item on position 1
+         */
         Thread.sleep(1000)
         Espresso.onView(withId(R.id.mainDataRecyclerView)).perform(
             actionOnItemAtPosition<GetCharacterListAdapter.GetCharacterListViewHolder>(characterItemOnTest, click()))

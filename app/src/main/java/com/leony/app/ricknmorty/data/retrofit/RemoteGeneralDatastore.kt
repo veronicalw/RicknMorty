@@ -11,6 +11,9 @@ interface RemoteGeneralDatastore {
         const val API_CHARACTER = "/api/character"
     }
 
+    /**
+     * APIs for accessing Rick and Morty Datas
+     */
     @GET(API_CHARACTER)
     fun getCharacterList(): Observable<GetCharacterListResponse>
 

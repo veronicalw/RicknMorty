@@ -33,6 +33,9 @@ class DetailActivity : AppCompatActivity(), GetCharacterDetailView {
     private lateinit var episodeRecyclerView: RecyclerView
     private lateinit var internetConnectionHelper: InternetConnectionHelper
 
+    /**
+     * A worker variable to handle request for Character Details
+     */
     private val getCharacterDetailWorker by lazy {
         GetCharacterDetailWorker(
             resources,
@@ -47,8 +50,15 @@ class DetailActivity : AppCompatActivity(), GetCharacterDetailView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        /**
+         * A helper class to help checking the internet connection
+         */
         internetConnectionHelper = InternetConnectionHelper(this)
 
+        /**
+         * initResource(): Initialize attributes IDs
+         * initIntent(): Getting the intent passed by the MainActivity
+         */
         initResource()
         initIntent()
     }
@@ -66,6 +76,9 @@ class DetailActivity : AppCompatActivity(), GetCharacterDetailView {
         charNumOfEpisode = findViewById(R.id.detailEpisodeValue)
         episodeRecyclerView = findViewById(R.id.detailEpisodesRecyclerView)
 
+        /**
+         * Whenever the user clicked on the back button, it will take them to the MainActivity back.
+         */
         backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -74,9 +87,16 @@ class DetailActivity : AppCompatActivity(), GetCharacterDetailView {
     }
 
     private fun initIntent(){
+        /**
+         * Getting the ID that being passed by the MainActivity.
+         * This ID will be called by the action to request character details from the server
+         */
         charId = intent.getIntExtra(MainActivity.ID,0)
     }
 
+    /**
+     * These are an override method from GetCharacterDetailView class that I created because of the use of the MVVM Architecture
+     */
     override fun displayCharacterDetailResult(response: GetCharacterDetailResponse) {
         runOnUiThread{
             charName.text = response.name
@@ -101,11 +121,18 @@ class DetailActivity : AppCompatActivity(), GetCharacterDetailView {
         }
     }
 
+    /**
+     * I called the worker in here directly
+     */
     override fun onStart() {
         super.onStart()
         getCharacterDetailWorker.execute(charId)
     }
 
+    /**
+     * To prevent memory leaks, I always stop the worker whenever the activity is being closed
+     * or the request(s) has been fulfilled
+     */
     override fun onStop() {
         super.onStop()
         getCharacterDetailWorker.stopWorker()

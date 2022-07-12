@@ -11,6 +11,9 @@ class IntroductionSliderAdapter : PagerAdapter() {
     private var layout: IntArray? = null
     private var context: Context? = null
 
+    /**
+     * An adapter class used by IntroductionActivity to display list of introduction layouts
+     */
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val layoutInflater = context!!.getSystemService(
             LAYOUT_INFLATER_SERVICE
