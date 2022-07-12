@@ -14,6 +14,9 @@ class ImageSliderAdapter() :
 
     var imageLists: MutableList<String> = arrayListOf()
 
+    /**
+     * An adapter class for the ImageView Slider inside the MainActivity
+     */
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -23,11 +26,17 @@ class ImageSliderAdapter() :
         return SliderImageViewHolder(view)
     }
 
+    /**
+     * Binding item data to the ViewHolder using its position
+     */
     override fun onBindViewHolder(holder: SliderImageViewHolder, position: Int) {
         Picasso.get().load(imageLists[position])
             .into(holder.mImageView)
     }
 
+    /**
+     * Size of the ImageView's List
+     */
     override fun getItemCount(): Int {
         return imageLists.size
     }
@@ -37,6 +46,6 @@ class ImageSliderAdapter() :
     }
 
     class SliderImageViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val mImageView by lazy { view.findViewById(R.id.imgProductDetail) as ImageView }
+        val mImageView by lazy { view.findViewById(R.id.imgCharacterDetail) as ImageView }
     }
 }

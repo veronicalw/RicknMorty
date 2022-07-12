@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/img_1">
+
+    <TextView
+        android:id="@+id/txtIntro1Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/screenIntroductionTitle1"
+        android:textSize="48dp"
+        android:textStyle="bold"
+        android:textColor="@color/green_slime"
+        android:fontFamily="sans-serif-black"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toTopOf="@id/txtIntro1Subtitle" />
+
+    <TextView
+        android:id="@+id/txtIntro1Subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/screenIntroductionSubtitle1"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:textFontWeight="@integer/material_motion_duration_long_1"
+        android:maxLines="2"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

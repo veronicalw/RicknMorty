@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -25,6 +24,10 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 
 class MainActivity : AppCompatActivity(), GetCharacterListView {
+    /**
+     * ID : is a key to pass from MainActivity to DetailActivity when the user
+     * clicked on the character item.
+     */
     companion object {
         const val ID = "id"
         const val TEXT_SIZE = 12
@@ -38,6 +41,17 @@ class MainActivity : AppCompatActivity(), GetCharacterListView {
     private lateinit var internetConnectionHelper: InternetConnectionHelper
     lateinit var indicators: Array<TextView?>
 
+    /**
+     * Here, I initialized a worker variable that responsible for the business logic.
+     * I called this variable in onStart() override method. Usually, the proper way to do that
+     * is to register the business logic itself first in the onStart() then we could call the action needed
+     * in every single request we ask in the Activity Class.
+     *
+     * To do this, we must provide a project that contains only an action type, a standardized data class, a worker class, and an action class.
+     * E.g:
+     * TypeAction class: TypeAction.ON_REQUEST_CHARACTER_LIST, TypeAction.REQUEST_CHARACTER_LIST
+     * TypeAction.ON_SUCCESS_RETRIEVE_CHARACTER_LIST, TypeAction.ON_ERROR_RETRIEVE_CHARACTER_LIST
+     */
     private val getCharacterListWorker by lazy {
         GetCharacterListWorker(
             resources,
@@ -52,13 +66,23 @@ class MainActivity : AppCompatActivity(), GetCharacterListView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /**
+         * This variable is responsible for checking internet connection, details would be explained on the expected class.
+         */
         internetConnectionHelper = InternetConnectionHelper(this)
 
+        /**
+         * I usually like to separate works into several methods to make the fill of the onCreate() method concise,
+         * and also when there are any bugs, I could trace it more clearly.
+         */
         initResource()
         initRecyclerView()
         initImageSlider()
     }
 
+    /**
+     * This method contains initialization of the attributes.
+     */
     private fun initResource(){
         mainImageViewPager = findViewById(R.id.mainImageViewPager)
         mainImagePoints = findViewById(R.id.mainImagePoints)
@@ -66,6 +90,9 @@ class MainActivity : AppCompatActivity(), GetCharacterListView {
         imageSliderAdapter = ImageSliderAdapter()
     }
 
+    /**
+     * This method contains initialization of the Character List RecyclerView
+     */
     private fun initRecyclerView(){
         val linearLayoutManager = LinearLayoutManager(this.applicationContext)
         mainDataRecyclerView.layoutManager = linearLayoutManager
@@ -85,6 +112,10 @@ class MainActivity : AppCompatActivity(), GetCharacterListView {
         mainDataRecyclerView.adapter = getCharacterListAdapter
     }
 
+    /**
+     * This method is responsible for handling ImageView Slider that I put on the MainActivity.
+     * (Three Images located on the top of the Character list)
+     */
     private fun initImageSlider(){
         indicators = arrayOfNulls(resources.getStringArray(R.array.mainImageItems).toList().size)
         imageSliderAdapter.imageSliderAdapter(resources.getStringArray(R.array.mainImageItems).toList())
@@ -98,6 +129,10 @@ class MainActivity : AppCompatActivity(), GetCharacterListView {
         })
     }
 
+    /**
+     * This function is responsible to determine the selected position indicators or well-known as dots
+     * on the ImageView Slider
+     */
     private fun selectedIndicator(position: Int) {
         for (i in indicators.indices) {
             if (i == position) {
@@ -108,6 +143,9 @@ class MainActivity : AppCompatActivity(), GetCharacterListView {
         }
     }
 
+    /**
+     * This function is responsible to set the UI of the indicators to set it on the view
+     */
     private fun selectedIndicatorView(){
         mainImagePoints.removeAllViews()
         for (i in indicators.indices) {
@@ -118,6 +156,9 @@ class MainActivity : AppCompatActivity(), GetCharacterListView {
         }
     }
 
+    /**
+     * These are an override method from GetCharacterListView class that I created because of the use of the MVVM Architecture
+     */
     override fun displayCharacterListResult(response: GetCharacterListResponse) {
         runOnUiThread {
             getCharacterListAdapter.updateListCharacter(response)
@@ -130,11 +171,18 @@ class MainActivity : AppCompatActivity(), GetCharacterListView {
         }
     }
 
+    /**
+     * I called the worker in here directly
+     */
     override fun onStart() {
         super.onStart()
         getCharacterListWorker.execute()
     }
 
+    /**
+     * To prevent memory leaks, I always stop the worker whenever the activity is being closed
+     * or the request(s) has been fulfilled.
+     */
     override fun onStop() {
         super.onStop()
         getCharacterListWorker.stopWorker()

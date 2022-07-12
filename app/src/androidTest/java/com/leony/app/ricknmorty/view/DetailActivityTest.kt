@@ -50,7 +50,7 @@ class DetailActivityTest {
     }
 
     /**
-     * Is Attribute comes to the view
+     * Is Intended response comes to the view
      */
     @Test
     fun displayDataToView(){
@@ -59,6 +59,11 @@ class DetailActivityTest {
         Espresso.onView(withId(R.id.charStatus)).perform(data.status?.let { setTextInTextView(it) })
         Espresso.onView(withId(R.id.detailSpeciesValue)).perform(data.species?.let { setTextInTextView(it) })
         Espresso.onView(withId(R.id.detailOriginValue)).perform(data.origin?.name.let { setTextInTextView(it.toString()) })
+
+        /**
+         * need to perform ScrollToAction() because the view is at the bottom of the screen (Not visible at the
+         * first time)
+         */
         Espresso.onView(withId(R.id.detailLocationValue)).perform(ScrollToAction(),data.location?.name.let { setTextInTextView(it.toString()) })
 
         Espresso.onView(withId(R.id.charName)).check(matches(withText(data.name)))
@@ -71,6 +76,9 @@ class DetailActivityTest {
             ?: "")))
     }
 
+    /**
+     * Function to make possible matches data with the textview
+     */
     private fun setTextInTextView(value: String): ViewAction {
         return object : ViewAction {
             override fun getConstraints(): Matcher<View> {

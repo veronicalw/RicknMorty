@@ -26,12 +26,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <ImageView
-                    android:id="@+id/charImage"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@color/dark_gray"/>
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/charImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@color/dark_gray"
+                        android:adjustViewBounds="true"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/fade_out_gradient"/>
+                </FrameLayout>
 
                 <ImageView
                     android:id="@+id/backButton"

@@ -7,8 +7,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ServerInfo {
     companion object {
+        /**
+         * "A Host" or general url of the API
+         */
         const val GENERAL_API_URL = "https://rickandmortyapi.com"
 
+        /**
+         * Because this project uses RxJava2, the adapter used when building
+         * the retrofit call is the adapter provided by RxJava2.
+         */
         private val rxJava2CallAdapterFactory =
             RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io())
 

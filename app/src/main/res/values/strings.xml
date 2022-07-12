@@ -34,6 +34,13 @@
     <!--    message-->
     <string name="messageNetworkError">Please check your internet connection! Thank You</string>
 
+    <!--    introduction titles and subtitles-->
+    <string name="screenIntroductionTitle1">R i c k \na n d \nM o r t y</string>
+    <string name="screenIntroductionSubtitle1">Everything about the cartoon characters provided for you</string>
+    <string name="screenIntroductionTitle2">Get to Know</string>
+    <string name="screenIntroductionSubtitle2">Just one step ahead</string>
+    <string name="screenIntroductionButtonText">></string>
+
     <!--    developer info-->
     <string name="developerFooterInfo">Developed and Built by Leony V.W</string>
 

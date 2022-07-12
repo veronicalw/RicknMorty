@@ -20,6 +20,10 @@ class InternetConnectionHelper(val context: Context) {
         return Observable.just(false)
     }
 
+    /**
+     * Observe the internet connection, pass it to isActiveNetworkConnected(context) and map it to
+     * isInternetAvailable(host)
+     */
     private fun checkInternetConnection(context: Context, host: String): Observable<Boolean> {
         return Observable
             .create<Boolean?> { emitter ->
@@ -44,6 +48,9 @@ class InternetConnectionHelper(val context: Context) {
             .subscribeOn(Schedulers.io())
     }
 
+    /**
+     * Monitor network connections
+     */
     private fun isActiveNetworkConnected(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
