@@ -22,7 +22,7 @@ RicknMorty uses a number of open source projects to work properly:
 * [Mockito](https://site.mockito.org)
 * [Espresso](https://github.com/freewym/espresso)
 
-And of course RicknMorty itself is currently a private repository on GitHub.
+RicknMorty itself is currently a private repository on GitHub.
 
 ### **Credit**
 Special thanks to : [Rick and Morty API Provider](https://rickandmortyapi.com)
@@ -35,7 +35,7 @@ RicknMorty requires [SDK min 23](https://developer.android.com/studio/releases/p
 
 Want to contribute? Great!
 
-RicknMorty uses Github and Gitlab for fast developing.
+RicknMorty uses Github and Gitlab (If needed) for fast developing.
 Make a change in your file and instantaneously see your updates!
 
 License
