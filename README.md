@@ -1,4 +1,4 @@
-# RicknMorty Wikipedia
+# RicknMorty Wikipedia [![Build Success](https://img.shields.io/badge/Build-Success-green)](https://github.com/veronicalw/RicknMorty)
 
 ![RicknMorty by Leony (2)](https://github.com/veronicalw/RicknMorty/blob/master/RicknMortyPreview.png?raw=true)
 
